@@ -195,3 +195,63 @@ FROM actor
 LIMIT 5, 10 (pule os 5 primeiros e mostre do 6 até o 15)
 - Caso você nao tenha o numero especifico, voce pode estourar o numero total com 10000
 
+
+OPERADOR REGEXP 
+- É um dos melhores, contudo, um pouco mais complexo (Expressões regulares), formam combinações
+Exemplo 
+
+USE sakila
+
+SELECT * 
+FROM actor
+-- Puxe todo primeiro nome que contenha a letra 'a'
+WHERE first_name REGEXP 'a'
+-- Puxe todo primeiro nome que comece com a letra '^a e inicie com a letra d'
+WHERE first_name REGEXP '^a |^d'
+-- Puxe todo primeiro nome  com a expressão '[ge]a': Primeiro ela irá pegar expressões com GE e depois EA
+WHERE first_name REGEXP '^[ge]a'
+
+
+OPERADORES MATEMATICOS 
+
+Usando operadores aritméticos.
+
+Para criar expressões aritméticas em uma consulta SQL usamos os operadores abaixo:
+
++ (somar)
+
+- (subtrair)
+
+* (multiplicar)
+
+/ (dividir)
+
+Os operadores acima podem ser usados apenas em colunas do tipo numérico.
+SELECT nome, salario, salario*12 As salario_anual
+FROM empregados
+
+
+
+OPERADORES DE COMPARAÇÃO 
+
+Os operadores de comparação são usados em condições que comparam uma expressão a outro valor ou expressão. 
+A tabela abaixo mostra os operadores:
+
+= Igual a
+
+> Maior que
+
+>= Maior ou igual a que
+
+< Menor que
+
+<= Menor ou igual a que
+
+<> Diferente de
+
+SELECT codigo_empregado, nome, salario
+FROM empregados
+WHERE codigo_empregado=12
+No exemplo acima, usamos o igual para criar um filtro na cláusula where, 
+este filtro diz que os dados retornados deverão ser do código de empregado IGUAL a 12.
+
