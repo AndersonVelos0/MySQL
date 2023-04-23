@@ -1,0 +1,197 @@
+Banco de Dados - SQL 
+
+
+- Tabela address da sakila 
+
+
+Componentes da tabela: 
+
+- Uma tabela é constituida por columns, o equivalente aos atributos. 
+- Todas as entradas (sequencia a partir do numero seguindo para direita), 
+são os chamados linhas: Row(Tuplas). 
+- Primary Key: é a primeira tabela, na qual possui um dado determinante de identificação. 
+- Um item dentro de uma row(tupla) é um Data value (um valor de um dado, dentro da celula).
+
+
+Tabelas Relacionais e Keys:
+
+- Relacional: as tabelas possuem uma relação entre elas. 
+
+- Utilizando a tabela staff do banco sakila. 
+Staff id, first name, last name, address id, picture. 
+- A coluna staff id é a primary key, pois podemos utilizar a numeração em outra tabela para relacionar. 
+- O endereço dele é o 3, pois o numero 3 está em uma outra tabela, o termo address id também é uma key, contudo
+é uma Foreign key
+- Foreign Key (Chave estrangeira): É uma chave importada de outra tabela, no caso do staff está indicando address. 
+- Na tabela Address, a city está sendo referenciada em outra tabela, criando uma relação entre elas, city é uma foreign key em address. 
+- Primary and foreign keys são utilizadas para reduzir o tamanho do banco de dados. 
+
+
+Utilizando o "USE" e o "SELECT":
+
+- O USE seleciona um banco de dados, exemplo: USE sakila
+- Neste exemplo ele está utilizando tudo do banco sakila. 
+
+Para utilizar diversos bancos de dados, é feito desta forma:
+Exemplo:
+USE sakila;
+USE world;
+USE sys;
+- Cada código vai em uma linha.
+
+Utilizando o Select:
+- O select é utilizado para selecionar dentro de uma tabela. 
+Exemplo de sintaxe: SELECT (nome da coluna) * FROM (nome da tabela)
+SELECT actor_id, first_name FROM sakila.actor;
+
+- Para listar todas ao mesmo tempo, utilize o asteristico:
+Exemplo de sintaxe: SELECT * FROM (nome da tabela);
+- Quando o código está muito grande, é possivel quebrá-lo, contudo, é importante
+ficar de olho na sequência de código, caso dê erro, verifique o ponto e virgula. 
+
+Ordenando com ORDER BY:
+
+- Para ordenar, seja por numero, ordem alfabetica, etc, utilizamos o ORDER BY.
+Exemplo: ORDER BY (nome da coluna), significa, comece por tal coluna.
+Exemplo de sintaxe: USE sakila;
+SELECT actor_id, first_name, last_name 
+FROM actor ORDER BY first_name;
+
+
+Adicionando o WHERE e comentando uma linha
+
+- Where significa aonde, conseguimos filtrar qualquer linha de uma coluna. 
+Exemplo da sintaxe: WHERE actor_id = 100
+USE sakila;
+SELECT actor_id, first_name, last_name 
+FROM actor
+WHERE actor_id = 1
+ORDER BY first_name;
+
+O código acima significa que estamos procurando na coluna actor_id o valor de numero 1
+
+E para puxar os primeiros 10 numeros???
+Exemplo : WHERE actor_id < (numero limite)
+
+- Para comentar é utilizado "--"
+
+
+Modificando uma coluna UTILIZANDO O SELECT
+
+- Exemplo:
+USE sakila;
+
+SELECT 
+	customer_id,
+    	amount
+FROM payment 
+WHERE customer_id = 1
+-- O Código acima irá filtrar apenas o valor 1 dessas duas colunas
+
+- Exemplo se eu quiser alterar criando uma nova coluna para amount
+USE sakila;
+
+SELECT 
+    customer_id,
+    amount,
+    amount - (amount * 0.10) AS "10% discount"
+FROM payment 
+WHERE customer_id = 1
+-- uma nova coluna está sendo criada com um desconto 
+- O dado não foi inserido no banco de dados, apenas está sendo mostrado. 
+
+
+Variações do WHERE:
+
+- Como conseguir filtrar um pouco mais, sejam numeros, palavras, dentro do banco de dados. 
+Exemplo: 
+USE sakila;
+
+SELECT * FROM payment
+WHERE amount = 0.99
+
+- Isso é útil para filtrar, por exemplo, clientes que fazem grandes compras.
+USE sakila;
+
+SELECT * FROM payment
+ORDER BY amount desc
+-- WHERE amount <= 0.99
+
+- Trocando de tabela
+
+USE sakila;
+
+SELECT * FROM address
+WHERE district = 'California'
+Abaixo um endereço que não seja igual a texas
+WHERE district != 'Texas'
+
+
+OPERADORES AND, OR, NOT 
+
+And: será o "e" este termo + este termo
+Or: será o "ou" este termo ou este termo 
+Not: será a negação
+
+Exemplo de AND: Pegando todos os clientes com id 1 que estão inativos = 0 
+USE sakila;
+SELECT * FROM customer
+WHERE store_id = 1 AND active = 0
+- Isso serve para chamar os clientes de volta, caso necessário
+
+Exemplo de OR: 
+USE sakila;
+SELECT * FROM payment
+WHERE staff_id = 1 OR amount = 0.99 OR customer_id <= 10
+
+Exemplo de NOT:
+USE sakila;
+SELECT * FROM payment
+WHERE NOT staff_id = 1 and amount = 0.99 AND customer_id <= 10
+- No caso do not, é utilizado apenas para primeira expressão, ela será negada. 
+
+
+OPERADOR IN: 
+- SERVE PARA PROCURAR MAIS DETALHADAMENTE
+USE sakila;
+SELECT * FROM address
+WHERE district IN ('Alberta', 'Texas', 'California')
+
+
+OPERADOR BETWEEN (Entre um valor e outro)
+- Utilizado para procurar uma range que está entre o inicio e o fim
+Exemplo 
+USE sakila;
+SELECT * 
+FROM payment 
+WHERE amount BETWEEN 1.99 AND 3.99 
+
+ 
+OPERADOR LIKE
+- Serve para igualar, parecido com, contenha
+Exemplo 
+USE sakila;
+SELECT *
+FROM actor 
+WHERE first_name LIKE 'J%(Esse operador significa"qualquer outra coisa depois do J"')
+Também da pra colocar a letra após a porcentagem 
+
+
+OPERADOR IS NULL
+- Serve para verificar se a coluna esta nula
+Exemplo: 
+USE sakial; 
+SELECT *
+FROM address
+WHERE address2 IS NULL
+
+
+OPERADOR LIMIT 
+- É utilizado para filtragem das opções a partir de tal valor, até tal valor
+Exemplo: 
+USE sakila;
+SELECT *
+FROM actor 
+LIMIT 5, 10 (pule os 5 primeiros e mostre do 6 até o 15)
+- Caso você nao tenha o numero especifico, voce pode estourar o numero total com 10000
+

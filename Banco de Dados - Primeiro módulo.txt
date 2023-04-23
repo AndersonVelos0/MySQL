@@ -1,0 +1,32 @@
+Banco de Dados - Modulo 1 
+
+
+
+O que são?
+
+- É qualquer formato onde você armazena informações, exemplo (lista do mercado). 
+Lista de telefone etc. Você tem banco de dados fisicos e digitais. 
+
+
+Diferença entre SQL e NoSQL?
+
+- SQL significa Structure Query Language, é uma linguagem para bancos de dados relacionais. Podemos adicionar, remover, atualizar etc.
+- NoSQL significa a mesma coisa, porém, é uma linguagem para verificar banco de dados não relacionais. 
+
+Quando devo utilizar SQL?
+- Funciona com tabelas, pois é muito organizado, por isso torna-se relacional. Há sempre uma relação entre as tabelas.;
+- Não é necessário utilizar multiplas informações, pois há referencias a outras tabelas. 
+- Contudo, quanto maior a tabela, mais lentas vao ser as requisições e atividades. 
+
+Quando devo utilizar NoSQL?
+- Armazena informação em um tipo de documento, ele pode armazenar em documentos (Json, etc). 
+- É mais fácil de armazenar varias informações, tem um retorno mais rápido, a organização é inferior ao SQL, 
+porém, há mais velocidade. É possivel armazenar uma grande quantidade de dados. 
+
+
+O que é uma DBMS?
+- Database Management System, existem inumeras no mercado, no curso utilizaremos a MySQL. 
+Existem outros DBMS, como a Oracle, Microsoft Access, PostgreSQL, Maria DB, Microsoft SQL Server.
+- É um software que organiza e armazena e faz mais funções, como backups, imports e export, ajuda a interagir com outras aplicações
+e com linguagens de programação. Possui bastante segurança, armazena todo tipo de quantidade de dados. 
+- Não há uma melhor DBMS, depende do projeto. 
